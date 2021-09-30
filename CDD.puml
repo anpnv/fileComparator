@@ -1,0 +1,25 @@
+@startuml CDD
+
+title CDD
+
+skinparam shadowing false
+
+class Fichier {
+    - name : string
+    - path : string
+    - size : int
+    - isfile : boolean
+    - lastModif :  LocalDateTime
+    - map : Map <String, Fichier>
+
+    + Fichier()
+    + displayFormat() : String
+    + lastModificationTime() : LocalDateTime
+    + toList() : list<Fichier>
+    + toMap() : Map<String, Fichier>
+
+    + abstract createList() : void
+    + abstract addFolder() : void
+    }
+
+@enduml

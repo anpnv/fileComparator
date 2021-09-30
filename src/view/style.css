@@ -1,0 +1,24 @@
+/**
+ *
+ * @author PONAMAREV Andrei - ROBERFROID Julien
+ */
+.SAME {
+    -fx-text-fill: #297312;
+}
+
+.PARTIAL_SAME {
+    -fx-text-fill: #eb951c;
+}
+
+.ORPHAN {
+    -fx-text-fill: #9042f5;
+}
+
+.NEWER{
+    -fx-text-fill: #39b4c4;
+}
+
+.OLDER {
+    -fx-text-fill: #ba4b18;
+}
+

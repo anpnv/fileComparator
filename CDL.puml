@@ -1,0 +1,85 @@
+@startuml CDL
+
+title CDL
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+rectangle Model {
+    abstract class Model
+    
+    enum Status {
+        UNDEFINED
+        ORPHAN
+        SAME
+        NEWER
+        OLDER 
+        PARTIAL_SAME
+    }
+
+    abstract class Fichier {
+        - name : string
+        - path : string
+        - size : int
+        - isfile : boolean
+        - lastModif :  LocalDateTime
+        - map : Map <String, Fichier>
+
+        + Fichier()
+        + displayFormat() : String
+        + lastModificationTime() : LocalDateTime
+        + toList() : list<Fichier>
+        + toMap() : Map<String, Fichier>
+
+        + abstract createList() : void
+        + abstract addFolder() : void
+    }
+
+    abstract class FichierSimple {
+        + FichierSimple()
+        + displayFormat() : String
+        + createList() : void
+    }
+
+    abstract class Dossier {
+        - file : List<Fichier>
+
+        + Dossier()
+        + displayFormat() : String
+        + addFolder() : void
+    }
+
+    class ComparateurFile{
+        - left : Map<String, Fichier>
+        - right : Map<String, Fichier>
+
+        + ComparatorFile()
+        + fileComparator() : void
+        + statusToFile() : void
+        + statusToFolder() : void
+        + nbolder() : int
+        + nbNewer() : int
+        + nbSame() : int
+        + nbOrp() : int
+        + counterStates() : int
+    }
+    
+
+    FichierSimple ..> Fichier
+    Dossier ..> Fichier
+
+}
+
+rectangle Main {
+
+    class Main {
+        + main()
+    }
+}
+
+Main ..> Model
+
+
+
+@enduml
